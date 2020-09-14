@@ -36,6 +36,7 @@ class _EmptyListWidgetState extends State<EmptyListWidget> with TickerProviderSt
   void dispose() {
       _backgroundController.dispose();
       _imageController.dispose();
+      _widgetController?.dispose();
     super.dispose();
   }
 
@@ -83,8 +84,8 @@ class _EmptyListWidgetState extends State<EmptyListWidget> with TickerProviderSt
       isPackageImage = true;
       _image = 'assets/images/emptyImage.png';
     }
-   
-   return  
+
+   return
    Expanded(
      flex: 3,
      child: AnimatedBuilder(
@@ -97,15 +98,15 @@ class _EmptyListWidgetState extends State<EmptyListWidget> with TickerProviderSt
        },
       child: Padding(
               padding:EdgeInsets.all(10),
-              child:  Image.asset(_image ,fit: BoxFit.contain,package: isPackageImage ? 'empty_widget' : null,) 
+              child:  Image.asset(_image ,fit: BoxFit.contain,package: isPackageImage ? 'empty_widget' : null,)
             )
      ),
    );
-   
+
   }
 
   Widget _imageBackground(){
-     return 
+     return
      Container(
           width: EmptyWidgetUtility.getHeightDimention(context,EmptyWidgetUtility.fullWidth(context) * .95),
           height: EmptyWidgetUtility.getHeightDimention(context,EmptyWidgetUtility.fullWidth(context) * .95),
@@ -116,7 +117,7 @@ class _EmptyListWidgetState extends State<EmptyListWidget> with TickerProviderSt
             ],
             shape: BoxShape.circle
           ),
-        );  
+        );
   }
 
   Widget _shell({Widget child}){
@@ -138,7 +139,7 @@ class _EmptyListWidgetState extends State<EmptyListWidget> with TickerProviderSt
     _titleTextStyle = widget.titleTextStyle ?? Theme.of(context).typography.dense.display1.copyWith(color: Color(0xff9da9c7));
     _subtitleTextStyle = widget.subtitleTextStyle ?? Theme.of(context).typography.dense.body2.copyWith(color: Color(0xffabb8d6));
     _packageImage = widget.packageImage ;
-     
+
     return  FadeTransition(
     opacity: _widgetController,
     child:  Container(
@@ -158,7 +159,7 @@ class _EmptyListWidgetState extends State<EmptyListWidget> with TickerProviderSt
                width: constraints.maxWidth - 30,
                alignment: Alignment.center,
                padding: EdgeInsets.all(10),
-               child: 
+               child:
                  Column(
                  mainAxisAlignment: MainAxisAlignment.center,
                  mainAxisSize: MainAxisSize.min,
@@ -189,4 +190,3 @@ class _EmptyListWidgetState extends State<EmptyListWidget> with TickerProviderSt
     );
   }
 }
-
